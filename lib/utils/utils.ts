@@ -6,7 +6,7 @@ const utils = exports;
  * @param {object} source - The source object to copy from.
  * @param {object} dest - The destination object to copy to.
  */
-utils.copyObject = (source, dest) => {
+utils.copyObject = (source: any, dest: any) : void => {
   const sourceKeys = Object.keys(source);
   for (let n = 0; n < sourceKeys.length; n += 1) {
     const key = sourceKeys[n];
@@ -23,8 +23,8 @@ utils.copyObject = (source, dest) => {
  * the parent key and the part after becomes the nested child key.
  * @param {object} obj - The object to nest.
  */
-utils.nestObject = (obj) => {
-  const nestedObject = {};
+utils.nestObject = (obj: any) : any => {
+  const nestedObject: any = {};
   const keys = Object.keys(obj);
   for (let n = 0; n < keys.length; n += 1) {
     const key = keys[n];
@@ -46,13 +46,13 @@ utils.nestObject = (obj) => {
 /** Get the current date in the LocaleString format.
  * @returns {string}
 */
-utils.getTsString = () => (new Date()).toLocaleString();
+utils.getTsString = () : String => (new Date()).toLocaleString();
 
 /** Get all methods from an object whose name doesn't start with an underscore.
  * @returns {object}
 */
-utils.getPublicMethods = (obj) => {
-  const ret = {};
+utils.getPublicMethods = (obj: any) : any => {
+  const ret : any = {};
   Object.getOwnPropertyNames(Object.getPrototypeOf(obj)).forEach((name) => {
     const func = obj[name];
     if ((func instanceof Function) && name !== 'constructor' && !name.startsWith('_')) {
@@ -62,8 +62,8 @@ utils.getPublicMethods = (obj) => {
   return ret;
 };
 
-utils.groupBy = (arr, keyGetter) => {
-  const ret = {};
+utils.groupBy = (arr: any[], keyGetter: (item: {}) => any) : any => {
+  const ret: any = {};
   arr.forEach((item) => {
     const key = keyGetter(item);
     const group = ret[key];
